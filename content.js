@@ -9,6 +9,8 @@
     if (window.__polliStretchTextLoaded) return;
     window.__polliStretchTextLoaded = true;
 
+    const POLLINATIONS_ENDPOINT =
+        "https://gen.pollinations.ai/v1/chat/completions";
     let isStretchActive = false;
     const trackedElements = [];
 

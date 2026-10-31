@@ -14,8 +14,8 @@ Polli StretchText is a Manifest V3 browser extension (plus interactive web reade
 - **In-Place Telescoping Levels (`1/6× Kernel` → `1/2× Context` → `1× Original`)**:
   - Works directly inside the current page's DOM layout (`content.js`), inspired by [cc-stretch](https://github.com/aguilarcarboni/cc-stretch).
 - **Bring Your Own Pollen (BYOP) Device Flow & `<polli-connect>`**:
-  - Extension popup uses the official Pollinations OAuth 2.0 Device Authorization Grant (`POST https://enter.pollinations.ai/api/device/code` & `POST https://enter.pollinations.ai/api/device/token`).
-  - Web demo page integrates `<polli-connect>` (`@pollinations/ui`).
+  - Extension popup uses the official Pollinations OAuth 2.0 Device Authorization Grant (https://enter.pollinations.ai/api/device/code and https://enter.pollinations.ai/api/device/token) and calls https://gen.pollinations.ai/v1/chat/completions.
+  - Web demo page integrates `<polli-connect>` (@pollinations/ui) and https://gen.pollinations.ai.
 - **Zero-Pollen Local Telescoping Fallback**:
   - Includes a deterministic sentence/clause telescoping engine and local storage cache so readers can try inline stretchtext immediately with 0 Pollen.
 
