@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Polli StretchText — Browser Extension &amp; Live Telescoping Web Reader</title>
+    <meta name="description" content="A Manifest V3 browser extension that turns any web page into Ted Nelson's stretchtext, powered by Pollinations LLMs with Bring Your Own Pollen (BYOP)." />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/@pollinations/ui@0.1.0-alpha.20/dist/connect.js"></script>
+</head>
+<body class="demo-page">
+    <header class="demo-header">
+        <div>
+            <h1 style="margin:0;font-size:1.3rem;">Polli StretchText — Telescoping Web Extension</h1>
+            <p style="margin:0.2rem 0 0;font-size:0.82rem;color:#94a3b8;">
+                Condense any web page to 1/6th its words and stretch inline phrases where you want detail · Powered by <a href="https://pollinations.ai/?ref=badge" target="_blank" rel="noopener" style="color:#f59e0b;">pollinations.ai</a>
+            </p>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.65rem;flex-wrap:wrap;">
+            <span id="demo-auth-pill" class="polli-stretch-badge">0-Pollen Interactive Demo Ready</span>
+            <polli-connect app-key="pk_zM4Wvtd1rgWXRmLP" budget="5" expiry="7" models="text"></polli-connect>
+        </div>
+    </header>
+
+    <main class="demo-container">
+        <section class="demo-card stretch-target">
+            <div class="demo-toolbar">
+                <button id="demo-btn-condense" class="polli-stretch-chip polli-stretch-expand" style="padding:0.5rem 0.9rem;font-size:0.85rem;">
+                    Condense Article to 1/6× StretchText
+                </button>
+                <button id="demo-btn-half" class="polli-stretch-chip" style="padding:0.5rem 0.9rem;font-size:0.85rem;">
+                    Expand All to 1/2× Context
+                </button>
+                <button id="demo-btn-full" class="polli-stretch-chip" style="padding:0.5rem 0.9rem;font-size:0.85rem;">
+                    Restore 1× Original Text
+                </button>
+                <select id="demo-model" style="background:#0b0f19;color:#f8fafc;border:1px solid #334155;border-radius:6px;padding:0.4rem 0.6rem;">
+                    <option value="openai-fast">Model: openai-fast</option>
+                    <option value="gemini-fast">Model: gemini-fast</option>
+                    <option value="claude-fast">Model: claude-fast</option>
+                </select>
+            </div>
+
+            <h2 style="margin-top:0;">Ted Nelson's 1967 Vision: Hypertext That Breathes With the Reader</h2>
+
+            <p>
+                In 1967, hypertext pioneer Ted Nelson coined the term "stretchtext" to describe a form of non-sequential writing where the reader controls the throttle of detail continuously in place. Instead of jumping away via footnotes or losing context in separate tabs, a reader starts with a crisp one-sixth distillation of the page and pulls open individual sentences right where curiosity strikes, shrinking them back when satisfied.
+            </p>
+
+            <p>
+                For nearly six decades, stretchtext remained rare on the open web because human authors had to manually write three or four telescoping versions of every single paragraph. With Pollinations language models and Bring Your Own Pollen (BYOP), the Polli StretchText browser extension compiles multi-depth telescoping layers on the fly for any article, documentation page, or essay you visit.
+            </p>
+
+            <p>
+                When you click "Condense Article to 1/6× StretchText" above (or in the browser extension popup), each long paragraph collapses into its core thesis chip. Clicking "+ Stretch more" expands that specific paragraph to its half-length supporting context, and clicking "+ Full text" reveals the author's verbatim original prose without ever scrolling away from your reading position.
+            </p>
+        </section>
+
+        <aside class="demo-card">
+            <h2 style="margin-top:0;">Install Browser Extension (MV3)</h2>
+            <p style="font-size:0.9rem;color:#cbd5e1;">
+                Works in Chrome, Edge, Brave, and Chromium browsers via Manifest V3, with OAuth 2.0 Device Flow (`https://enter.pollinations.ai/api/device/code`) so readers pay with their own Pollen.
+            </p>
+            <ol style="font-size:0.88rem;line-height:1.65;color:#cbd5e1;padding-left:1.2rem;">
+                <li>Clone or download <a href="https://github.com/Brutus88Ai/polli-stretchtext" target="_blank" rel="noopener" style="color:#f59e0b;">Brutus88Ai/polli-stretchtext</a>.</li>
+                <li>Open <code>chrome://extensions</code> and enable <strong>Developer mode</strong>.</li>
+                <li>Click <strong>Load unpacked</strong> and select the repository folder.</li>
+                <li>Pin <strong>Polli StretchText</strong>, connect your Pollinations wallet via Device Flow (or use 0-Pollen Local Telescoping), and condense any web page in one click!</li>
+            </ol>
+
+            <div style="margin-top:1.25rem;padding:0.9rem;border-radius:10px;background:#0b1020;border:1px solid #283655;font-size:0.82rem;color:#94a3b8;">
+                <strong>Zero-Pollen Guarantee:</strong> Repeatedly stretching and shrinking paragraphs uses local level caching and deterministic fallback telescoping so exploring costs 0 extra Pollen.
+            </div>
+
+            <div style="margin-top:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">
+                <a href="https://pollinations.ai/?ref=badge" target="_blank" rel="noopener">
+                    <img src="https://raw.githubusercontent.com/pollinations/pollinations/main/packages/ui/src/brand/badge-made-with.svg" alt="Made with pollinations.ai" height="28" />
+                </a>
+                <a href="https://github.com/pollinations/pollinations/issues/17998" target="_blank" rel="noopener" style="font-size:0.8rem;color:#f59e0b;">Quest #17998</a>
+            </div>
+        </aside>
+    </main>
+
+    <script src="./content.js"></script>
+    <script type="module">
+        import { PollinationsStretchClient } from "./pollinations-client.js";
+        const client = new PollinationsStretchClient();
+
+        document.addEventListener("polli-connect", async (e) => {
+            const key = e.detail?.key || e.detail?.apiKey || e.detail?.token;
+            if (key) {
+                await client.setToken(key);
+                document.getElementById("demo-auth-pill").textContent = `BYOP Connected (${key.slice(0, 6)}…)`;
+            }
+        });
+
+        document.getElementById("demo-btn-condense").addEventListener("click", () => {
+            const model = document.getElementById("demo-model").value;
+            window.PolliStretchPageController?.activateStretchText(model);
+        });
+        document.getElementById("demo-btn-half").addEventListener("click", () => {
+            window.PolliStretchPageController?.activateStretchText();
+            window.PolliStretchPageController?.setAllLevels(1);
+        });
+        document.getElementById("demo-btn-full").addEventListener("click", () => {
+            window.PolliStretchPageController?.restoreOriginalPage();
+        });
+
+        // Auto-activate StretchText on load so visitors immediately experience inline telescoping
+        window.addEventListener("DOMContentLoaded", () => {
+            window.PolliStretchPageController?.activateStretchText();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+    "manifest_version": 3,
+    "name": "Polli StretchText — Inline Telescoping Web Reader",
+    "version": "1.0.0",
+    "description": "Turns any web page into Ted Nelson's stretchtext: condense articles to 1/6th length and click inline phrases to expand or shrink in place, powered by Pollinations BYOP.",
+    "permissions": ["storage", "activeTab", "scripting"],
+    "host_permissions": [
+        "https://enter.pollinations.ai/*",
+        "https://gen.pollinations.ai/*"
+    ],
+    "background": {
+        "service_worker": "background.js",
+        "type": "module"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "Polli StretchText (BYOP)"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"],
+            "css": ["styles.css"],
+            "run_at": "document_idle"
+        }
+    ]
+}

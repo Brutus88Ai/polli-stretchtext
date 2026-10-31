@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Polli StretchText</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="popup-body">
+    <div class="popup-card">
+        <div class="popup-header">
+            <strong>Polli StretchText</strong>
+            <span id="popup-auth-badge" class="polli-stretch-badge">0-Pollen Local / BYOP</span>
+        </div>
+        <p class="popup-sub">
+            Condense any web page to 1/6th of its words, then click inline <code>+ Stretch more</code> / <code>− Shrink</code> chips right in place.
+        </p>
+
+        <div class="popup-field">
+            <label for="popup-model">Pollinations Model (`gen.pollinations.ai`)</label>
+            <select id="popup-model">
+                <option value="openai-fast">openai-fast (Fastest)</option>
+                <option value="gemini-fast">gemini-fast</option>
+                <option value="claude-fast">claude-fast</option>
+            </select>
+        </div>
+
+        <div class="popup-actions">
+            <button id="btn-toggle-page" class="polli-stretch-chip polli-stretch-expand" style="width:100%;padding:0.55rem;">
+                Toggle StretchText on Active Tab
+            </button>
+        </div>
+
+        <div style="display:flex;gap:0.35rem;margin-top:0.45rem;">
+            <button id="btn-level-0" class="polli-stretch-chip" style="flex:1;">1/6× All</button>
+            <button id="btn-level-1" class="polli-stretch-chip" style="flex:1;">1/2× All</button>
+            <button id="btn-level-2" class="polli-stretch-chip" style="flex:1;">1× Full</button>
+        </div>
+
+        <hr style="border:0;border-top:1px solid #334155;margin:0.75rem 0;" />
+
+        <div class="popup-field">
+            <button id="btn-device-flow" class="polli-stretch-chip" style="width:100%;padding:0.5rem;">
+                Connect Pollinations (BYOP Device Flow)
+            </button>
+            <div id="device-flow-box" style="display:none;margin-top:0.5rem;font-size:0.78rem;background:#0f172a;padding:0.5rem;border-radius:6px;"></div>
+        </div>
+
+        <div style="margin-top:0.65rem;font-size:0.74rem;text-align:center;">
+            Powered by <a href="https://pollinations.ai/?ref=badge" target="_blank" rel="noopener">pollinations.ai</a>
+        </div>
+    </div>
+    <script type="module" src="./popup.js"></script>
+</body>
+</html>
